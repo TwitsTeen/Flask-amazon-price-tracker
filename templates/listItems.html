@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Items</h1>
+    <ul>
+      {% for item in items %}
+      <li>
+        <div>
+          <h2>{{ item.name }}</h2>
+          {% if item.url %}
+          <a href="{{ item.url }}" target="_blank">Link</a>
+          {% else %}
+          <p>Link not available</p>
+          {% endif %} {% if item.price_history %}
+          <ul>
+            {% for date, price in item.price_history.items() %}
+            <li>{{ date }}: {{ price }}€</li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>Price not available</p>
+          {% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="/add">Add Item</a>
+    <a href="/update_prices">Update Prices</a>
+    <a href="/export">Save Prices</a>
+  </body>
+</html>
